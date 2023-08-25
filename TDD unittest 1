@@ -1,0 +1,20 @@
+import unittest
+import random
+
+# Import the function to be tested
+from main import generate_random_number
+
+class TestGenerateRandomNumber(unittest.TestCase):
+    def test_length_of_generated_list(self):
+        # Write a test case to check the length of the generated list
+        result = generate_random_number()
+        self.assertEqual(len(result), 4)  # Expect the generated list to have a length of 4
+
+    def test_range_of_generated_numbers(self):
+        # Write a test case to check the range of generated numbers
+        result = generate_random_number()
+        for num in result:
+            self.assertTrue(0 <= num <= 9)  # Check if each number is within the range of 0 to 9
+
+if __name__ == '__main__':
+    unittest.main()

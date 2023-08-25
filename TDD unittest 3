@@ -1,0 +1,23 @@
+import unittest
+from unittest.mock import patch
+from io import StringIO
+
+# Import the function to be tested
+from main import main  # Replace "your_module" with your actual module name
+
+class TestMainFunction(unittest.TestCase):
+    @patch('builtins.input', side_effect=['1234', '5678', 'q', 'no'])
+    def test_main(self, mock_input):
+        # Redirect stdout to capture printed output
+        with patch('sys.stdout', new_callable=StringIO) as mock_output:
+            main()
+
+        # Get the captured output
+        output = mock_output.getvalue()
+
+        # Add your assertions here to check the output
+        self.assertIn("Welcome to the Guess the Number game!", output)
+        self.assertIn("Thanks for playing Guess the Number!", output)
+
+if __name__ == '__main__':
+    unittest.main()
